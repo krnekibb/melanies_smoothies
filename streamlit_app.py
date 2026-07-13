@@ -20,9 +20,6 @@ session = cnx.session()
 my_dataframe = session.table("SMOOTHIES.PUBLIC.FRUIT_OPTIONS").select(col("FRUIT_NAME"))
 # st.dataframe(data=my_dataframe, use_container_width=True)
 
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")  
-st.text(smoothiefroot_response)
-
 
 ingredients_list = st.multiselect(
     "Choose up to 5 ingredients: ",
@@ -54,3 +51,6 @@ if ingredients_list:
     if time_to_insert:
         session.sql(my_insert_statement).collect()
         st.success(f'Your Smoothie is ordered! {name_on_order}', icon="✅")
+
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")  
+st.text(smoothiefroot_response)
